@@ -1,7 +1,15 @@
 #include "FileHandler.h"
+#include "PrimaryIndex_Appoinment.h"
+#include "PrimaryIndex_Doctor.h"
+#include "SecondaryIndex_Doctor.h"
 
 void writeDoctorToFile(const Doctor& doctor, const string& filename) {
-    ofstream file(filename, ios::app | ios::binary);
+    fstream file(filename, ios::app | ios::binary);
+    PrimaryIndex_Doctor indexDoctor;
+    SecondaryIndex_Doctor secondaryIndexDoctor;
+    secondaryIndexDoctor.Load_Index_From_File();
+    indexDoctor.Load_Index_From_File();
+
     if (file.is_open()) {
         file.write(doctor.doctorID, 15);
         file.write("|", 1);
@@ -9,6 +17,10 @@ void writeDoctorToFile(const Doctor& doctor, const string& filename) {
         file.write("|", 1);
         file.write(doctor.address, 30);
         file.write("\n", 1);
+        file.seekg(0, ios::end);
+        int RRN =  file.tellg()/78 ;
+        indexDoctor.add(doctor.doctorID , RRN);
+        secondaryIndexDoctor.add(doctor.doctorName , doctor.doctorID);
         file.close();
     } else {
         cerr << "Unable to open file for writing." << endl;
@@ -31,7 +43,9 @@ void readDoctorsFromFile(const string& filename) {
 
 // Write an appointment record to a file
 void writeAppointmentToFile(const Appointment& appointment, const string& filename) {
-    ofstream file(filename, ios::app | ios::binary);
+    fstream file(filename, ios::app | ios::binary);
+    PrimaryIndex_Appointment primaryIndexAppointment;
+    primaryIndexAppointment.Load_Index_From_File();
     if (file.is_open()) {
         file.write(appointment.appointmentID, 15);
         file.write("|", 1);
@@ -39,6 +53,8 @@ void writeAppointmentToFile(const Appointment& appointment, const string& filena
         file.write("|", 1);
         file.write(appointment.doctorID, 15);
         file.write("\n", 1);
+        file.seekg(0 , ios::end);
+        primaryIndexAppointment.add(appointment.appointmentID , file.tellg()/63 );
         file.close();
     } else {
         cerr << "Unable to open file for writing." << endl;
