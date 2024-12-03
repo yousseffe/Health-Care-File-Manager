@@ -25,3 +25,13 @@ void Doctor::setAddress(const string& addr) {
 string Doctor::toDelimitedString() const {
     return string(doctorID) + "|" + string(doctorName) + "|" + string(address) + "\n";
 }
+void Doctor::fromDelimitedString(const string& str) {
+    stringstream ss(str);
+    string temp;
+    getline(ss, temp, '|');
+    setDoctorID(temp);
+    getline(ss, temp, '|');
+    setDoctorName(temp);
+    getline(ss, temp, '|');
+    setAddress(temp);
+}

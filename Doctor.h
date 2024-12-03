@@ -2,9 +2,11 @@
 #ifndef PROJECT_DOCTOR_H
 #define PROJECT_DOCTOR_H
 #include <bits/stdc++.h>
+#include "Record.h"
+
 using namespace std;
 
-class Doctor {
+class Doctor : public Record {
 public:
     // size + el null
     char doctorID[16]{};
@@ -17,7 +19,8 @@ public:
     void setDoctorName(const string& name);
     void setAddress(const string& addr);
 
-    string toDelimitedString() const;
+    string toDelimitedString() const override;
+    void fromDelimitedString(const string& str) override ;
 };
 
 

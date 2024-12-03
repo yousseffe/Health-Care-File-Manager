@@ -9,10 +9,14 @@ using namespace std;
 #include "Doctor.h"
 #include "Appointment.h"
 
-void writeDoctorToFile(const Doctor& doctor, const string& filename);
+void addDoctor(const Doctor& doctor);
+void updateDoctor(const string& doctorID, const string& newName, const string& newAddress);
+void deleteDoctor(const string& doctorID);
 void readDoctorsFromFile(const string& filename);
 
-void writeAppointmentToFile(const Appointment& appointment, const string& filename);
+void addAppointment(const Appointment& appointment);
+void updateAppointment(const string& appointmentID, const string& newDate);
+void deleteAppointment(const string& appointmentID);
 void readAppointmentsFromFile(const string& filename);
 
 

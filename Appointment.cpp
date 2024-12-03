@@ -20,3 +20,17 @@ void Appointment::setDoctorID(const string& docID) {
     strncpy(doctorID, docID.c_str(), 15);
     doctorID[15] = '\0';
 }
+void Appointment::fromDelimitedString(const string& str) {
+    stringstream ss(str);
+    string temp;
+    getline(ss, temp, '|');
+    setAppointmentID(temp);
+    getline(ss, temp, '|');
+    setAppointmentDate(temp);
+    getline(ss, temp, '|');
+    setDoctorID(temp);
+}
+
+string Appointment::toDelimitedString() const {
+    return string(appointmentID) + "|" + string(appointmentDate) + "|" + string(doctorID) + "\n";
+}

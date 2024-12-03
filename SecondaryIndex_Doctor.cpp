@@ -4,6 +4,10 @@
 
 #include "SecondaryIndex_Doctor.h"
 void SecondaryIndex_Doctor::add(const string& Name, string id) {
+    auto& ids = index[Name];
+    if (find(ids.begin(), ids.end(), id) != ids.end()) {
+        return;
+    }
     index[Name].push_back(id);
     Write_Index_To_File();
 }

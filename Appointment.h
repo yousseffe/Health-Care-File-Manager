@@ -6,21 +6,24 @@
 #define PROJECT_APPOINTMENT_H
 
 #include <bits/stdc++.h>
+#include "Record.h"
+
 using namespace std;
-class Appointment {
+class Appointment : public Record {
 public:
     // size + el null
     char appointmentID[16]{};
     char appointmentDate[31]{};
     char doctorID[16]{};
 
-    Appointment(const string& id = "", const std::string& date = "", const std::string& docID = "");
+    Appointment(const string& id = "", const string& date = "", const string& docID = "");
     Appointment(string& id, string& date, string& docID);
-    void setAppointmentID(const std::string& id);
-    void setAppointmentDate(const std::string& date);
-    void setDoctorID(const std::string& docID);
+    void setAppointmentID(const string& id);
+    void setAppointmentDate(const string& date);
+    void setDoctorID(const string& docID);
 
-    std::string toDelimitedString() const;
+    string toDelimitedString() const override;
+    void fromDelimitedString(const string& str) override;
 };
 
 

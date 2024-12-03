@@ -18,4 +18,6 @@ add_executable(Project
         PrimaryIndex_Appoinment.cpp
         SecondaryIndex_Doctor.h
         SecondaryIndex_Doctor.cpp
-        )
+        Record.h
+        Index.h
+)

@@ -1,4 +1,4 @@
-# Install script for directory: D:/study/3d yaer/File Managment/Project
+# Install script for directory: D:/study/3d yaer/File Managment/test/Health-Care-File-Manager
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "D:/study/3d yaer/File Managment/Project/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/study/3d yaer/File Managment/test/Health-Care-File-Manager/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
