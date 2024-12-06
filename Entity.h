@@ -6,11 +6,12 @@
 #define FILE_ENTITY_H
 #include "bits/stdc++.h"
 using namespace std;
-class Entity {
-public :
+class Entity
+{
+public:
     string ID;
 
     virtual string toString() = 0;
-    virtual void display()=0;
+    virtual void display() = 0;
 };
-#endif //FILE_ENTITY_H
+#endif // FILE_ENTITY_H

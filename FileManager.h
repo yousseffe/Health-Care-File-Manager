@@ -2,35 +2,34 @@
 #ifndef FILE_FILEMANAGER_H
 #define FILE_FILEMANAGER_H
 
-
 #include "Doctor.h"
 #include "Appointment.h"
 #include "DoctorPrimaryIndex.h"
 #include "AppointmentPrimaryIndex.h"
 
-class FileManager {
+class FileManager
+{
 public:
-    static vector<int> availableListDoctor ;
+    static vector<int> availableListDoctor;
     static vector<int> availableListAppointment;
     static vector<Doctor> doctors;
     static vector<Appointment> appointments;
     static map<int, int> doctorPrimaryIndex;
     static map<int, int> appointmentsPrimaryIndex;
-    static map<string , list<string>> doctorSecondaryIndexForName;
-    static map<string , list<string>> appointmentsSecondaryIndexForDoctorID;
+    static map<string, list<string>> doctorSecondaryIndexForName;
+    static map<string, list<string>> appointmentsSecondaryIndexForDoctorID;
 
     static void initialize();
 
-    //CRUD
+    // CRUD
     static void addDoctors(Doctor doctor);
     static void addAppointments(Appointment appointment);
     static void deleteDoctor(string id);
     static void deleteAppointment(string id);
-    static void updateDoctor(string doctorID,  string newName,  string newSpecialization);
-    static void updateAppointment(string appointmentID,  string newDoctorID,  string newDate);
+    static void updateDoctor(string doctorID, string newName, string newSpecialization);
+    static void updateAppointment(string appointmentID, string newDoctorID, string newDate);
 
-
-    //load files
+    // load files
     static void loadDoctorsFromFile();
     static void loadAppointmentsFromFile();
     static void loadDoctorPrimaryIndex();
@@ -50,10 +49,9 @@ public:
     static void saveAvailableListDoctor();
     static void saveAvailableListAppointment();
 
-    //display
+    // display
     static void displayAppointments();
     static void displayDoctors();
 };
 
-
-#endif //FILE_FILEMANAGER_H
+#endif // FILE_FILEMANAGER_H

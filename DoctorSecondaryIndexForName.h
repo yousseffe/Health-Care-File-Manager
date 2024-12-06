@@ -3,31 +3,34 @@
 #define FILE_DOCTORSECONDARYINDEXFORNAME_H
 #include "bits/stdc++.h"
 using namespace std;
-class DoctorSecondaryIndexForName{
+class DoctorSecondaryIndexForName
+{
 public:
     string Name;
     list<string> DoctorsID;
 
-    DoctorSecondaryIndexForName(string name , list<string> doctorsID) : Name(name) , DoctorsID(doctorsID){}
-    DoctorSecondaryIndexForName(string record){
+    DoctorSecondaryIndexForName(string name, list<string> doctorsID) : Name(name), DoctorsID(doctorsID) {}
+    DoctorSecondaryIndexForName(string record)
+    {
         stringstream ss(record);
         string length;
-        getline(ss,length,'|');
-        getline(ss , this->Name , '|');
+        getline(ss, length, '|');
+        getline(ss, this->Name, '|');
         string id;
-        while(getline(ss , id , '|')){
+        while (getline(ss, id, '|'))
+        {
             DoctorsID.push_back(id);
         }
     }
 
-
-    string toString(){
+    string toString()
+    {
         string record = Name;
-        for(string id: DoctorsID){
+        for (string id : DoctorsID)
+        {
             record += "|" + id;
         }
-        return to_string(record.length() +1 ) + "|" + record;
+        return to_string(record.length() + 1) + "|" + record;
     }
-
 };
-#endif //FILE_DOCTORSECONDARYINDEXFORNAME_H
+#endif // FILE_DOCTORSECONDARYINDEXFORNAME_H

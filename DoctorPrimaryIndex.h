@@ -6,27 +6,29 @@
 #include "PrimaryIndex.h"
 
 using namespace std;
-class DoctorPrimaryIndex : public PrimaryIndex{
+class DoctorPrimaryIndex : public PrimaryIndex
+{
 public:
     string id;
-
-
-    DoctorPrimaryIndex(int id, int index){
+    DoctorPrimaryIndex(int id, int index)
+    {
         this->id = id;
         this->index = index;
     }
-    DoctorPrimaryIndex(string record) {
+    DoctorPrimaryIndex(string record)
+    {
         stringstream ss(record);
         string length;
-        getline(ss,length,'|');
-        getline(ss , this->id , '|');
+        getline(ss, length, '|');
+        getline(ss, this->id, '|');
         string indexStr;
-        getline(ss , indexStr , '|');
+        getline(ss, indexStr, '|');
         this->index = stoi(indexStr);
     }
-    string toString() override {
+    string toString() override
+    {
         string record = this->id + "|" + to_string(this->index);
-        return to_string(record.length()+1) + "|" + record;
+        return to_string(record.length() + 1) + "|" + record;
     }
 };
-#endif //FILE_DOCTORPRIMARYINDEX_H
+#endif // FILE_DOCTORPRIMARYINDEX_H

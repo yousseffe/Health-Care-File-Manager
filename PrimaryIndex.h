@@ -4,7 +4,8 @@
 #define FILE_PRIMARYINDEX_H
 #include <bits/stdc++.h>
 using namespace std;
-class PrimaryIndex{
+class PrimaryIndex
+{
 public:
     int index;
 
