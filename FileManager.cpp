@@ -142,7 +142,7 @@ void FileManager::updateDoctor( string doctorID,  string newName = "",  string a
     createDoctorPrimaryIndex();
     saveDoctorPrimaryIndexFile();
 }
-void FileManager::updateAppointment(string appointmentID, string newDoctorID, string newDate) {
+void FileManager::updateAppointment(string appointmentID, string newDoctorID= "", string newDate= "") {
     int normalizedID = stoi(appointmentID);
     auto it = appointmentsPrimaryIndex.find(normalizedID);
     if (it == appointmentsPrimaryIndex.end()) {
