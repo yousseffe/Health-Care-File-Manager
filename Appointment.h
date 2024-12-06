@@ -1,30 +1,32 @@
 //
-// Created by youssef on 11/26/2024.
+// Created by youssef on 12/5/2024.
 //
 
-#ifndef PROJECT_APPOINTMENT_H
-#define PROJECT_APPOINTMENT_H
+#ifndef FILE_APPOINTMENT_H
+#define FILE_APPOINTMENT_H
 
-#include <bits/stdc++.h>
-#include "Record.h"
+#include "Entity.h"
 
-using namespace std;
-class Appointment : public Record {
+class Appointment : public Entity {
 public:
-    // size + el null
-    char appointmentID[16]{};
-    char appointmentDate[31]{};
-    char doctorID[16]{};
+    string DoctorID;
+    string date;
+    Appointment(string id , string doctorID , string data) : DoctorID(doctorID) , date(data) { this->ID = id; }
+    Appointment(string record){
+        stringstream ss(record);
+        string length;
+        getline(ss,length,'|');
+        getline(ss , this->ID , '|');
+        getline(ss , this->DoctorID , '|');
+        getline(ss , this->date , '|');
+    }
 
-    Appointment(const string& id = "", const string& date = "", const string& docID = "");
-    Appointment(string& id, string& date, string& docID);
-    void setAppointmentID(const string& id);
-    void setAppointmentDate(const string& date);
-    void setDoctorID(const string& docID);
-
-    string toDelimitedString() const override;
-    void fromDelimitedString(const string& str) override;
+    string toString() override{
+        string record = this->ID + "|" + this->DoctorID + "|" + this->date;
+        return to_string(record.length()+1)+ "|" + record;
+    }
+    void display() override{
+        cout<< setw(15) << ID << setw(30) << date << setw(15) << DoctorID << endl;
+    }
 };
-
-
-#endif //PROJECT_APPOINTMENT_H
+#endif //FILE_APPOINTMENT_H

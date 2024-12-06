@@ -1,27 +1,36 @@
+//
+// Created by youssef on 12/5/2024.
+//
 
-#ifndef PROJECT_DOCTOR_H
-#define PROJECT_DOCTOR_H
-#include <bits/stdc++.h>
-#include "Record.h"
+#ifndef FILE_DOCTOR_H
+#define FILE_DOCTOR_H
 
-using namespace std;
+#include "Entity.h"
 
-class Doctor : public Record {
+class Doctor : public Entity{
 public:
-    // size + el null
-    char doctorID[16]{};
-    char doctorName[31]{};
-    char address[31]{};
+    string Name;
+    string Address;
 
-    Doctor( const string& id = "", const  string& name = "", const string& addr = "");
+    Doctor(string id , string name , string address): Name(name) , Address(address){
+        this->ID = id;
+    }
+    Doctor(string record){
+        stringstream ss(record);
+        string length;
+        getline(ss,length,'|');
+        getline(ss , this->ID , '|');
+        getline(ss , this->Name , '|');
+        getline(ss , this->Address , '|');
+    }
 
-    void setDoctorID(const string& id);
-    void setDoctorName(const string& name);
-    void setAddress(const string& addr);
+    string toString() override{
+        string record = this->ID + "|" + this->Name + "|" + this->Address;
+        return to_string(record.length()+1)+ "|" + record;
+    }
+    void display() override{
+        cout<< setw(15) << ID << setw(30) << Name << setw(30) << Address << endl;
+    }
 
-    string toDelimitedString() const override;
-    void fromDelimitedString(const string& str) override ;
 };
-
-
-#endif //PROJECT_DOCTOR_H
+#endif //FILE_DOCTOR_H

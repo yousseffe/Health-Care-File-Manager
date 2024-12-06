@@ -1,25 +1,49 @@
-#include "Doctor.h"
-#include "Appointment.h"
-#include "FileHandler.h"
-
+#include <iostream>
+#include "FileManager.h"
 int main() {
-    Doctor doc1("DOC001", "Dr. John Smith", "123 Main St.");
-    Doctor doc2("DOC002", "Dr. Alice Johnson", "456 Oak Ave.");
+    FileManager::initialize();
+    Doctor doctor("1", "Youssef", "Riyadh");
+    Doctor doctor2("2", "Youssef", "Riyadh");
+    Doctor doctor3("3", "ahmed", "Riyadh");
+    Doctor doctor4("4", "ahmed", "Riyadh");
+    Doctor doctor5("5", "khalid", "Riyadh");
 
-    addDoctor(doc1);
-    addDoctor(doc2);
+    Appointment appointment("1", "1", "2023-01-01");
+    Appointment appointment2("2", "1", "2023-01-01");
+    Appointment appointment3("3", "2", "2023-01-01");
+    Appointment appointment4("4", "2", "2023-01-01");
+    Appointment appointment5("5", "3", "2023-01-01");
+    Appointment appointment6("6", "3", "2023-01-01");
+    Appointment appointment7("7", "4", "2023-01-01");
+    Appointment appointment8("8", "4", "2023-01-01");
+    Appointment appointment9("9", "5", "2023-01-01");
+    Appointment appointment10("10", "5", "2023-01-01");
 
-    cout << "Doctors:\n";
-    readDoctorsFromFile("doctors.txt");
+//    FileManager::addDoctors(doctor);
+//    FileManager::addDoctors(doctor2);
+//    FileManager::addDoctors(doctor3);
+//    FileManager::addDoctors(doctor4);
+//    FileManager::addDoctors(doctor5);
+//
+//    FileManager::addAppointments(appointment);
+//    FileManager::addAppointments(appointment2);
+//    FileManager::addAppointments(appointment3);
+//    FileManager::addAppointments(appointment4);
+//    FileManager::addAppointments(appointment5);
+//    FileManager::addAppointments(appointment6);
+//    FileManager::addAppointments(appointment7);
+//    FileManager::addAppointments(appointment8);
+//    FileManager::addAppointments(appointment9);
+//    FileManager::addAppointments(appointment10);
+//    FileManager::updateDoctor("4" , "khalid" , "Riyadh");
+//    FileManager::deleteAppointment("1");
+//    FileManager::deleteDoctor("1");
+//    FileManager::addDoctors(doctor);
+//    FileManager::deleteDoctor("2");
+    FileManager::displayDoctors();
+    cout<< endl;
+    cout<< endl;
 
-    Appointment appt1("APT001", "2024-11-30", "DOC001");
-    Appointment appt2("APT002", "2024-12-01", "DOC002");
+    FileManager::displayAppointments();
 
-    addAppointment(appt1);
-    addAppointment(appt2);
-
-    cout << "\nAppointments:\n";
-    readAppointmentsFromFile("appointments.txt");
-
-    return 0;
 }
