@@ -1,5 +1,0 @@
-17|1|Youssef|Riyadh
-17|2|Youssef|Riyadh
-15|3|ahmed|Riyadh
-16|4|khalid|Riyadh
-16|5|khalid|Riyadh
