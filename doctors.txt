@@ -1,0 +1,4 @@
+1|Dr. John Smith|Cardiologist|Monday, Wednesday, Friday
+2|Dr. Alice Johnson|Neurologist|Tuesday, Thursday, Saturday
+3|Dr. Bob Williams|General Practitioner|Monday to Friday
+4|Dr. Emma Brown|Pediatrician|Monday, Wednesday, Friday, Saturday

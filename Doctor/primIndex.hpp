@@ -5,7 +5,6 @@
 #include <iostream>
 #include <sstream>
 #include "../General/primaryIndex.hpp"
-
 using namespace std;
 class DoctorPrimaryIndex : public PrimaryIndex
 {

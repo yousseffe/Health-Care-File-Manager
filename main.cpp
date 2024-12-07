@@ -1,46 +1,137 @@
 #include "FileManager/FileManager.cpp"
+using namespace std;
+
 int main()
 {
-    FileManager::initialize();
-    Doctor doctor("1", "Youssef", "Riyadh");
-    Doctor doctor2("2", "Youssef", "Riyadh");
-    Doctor doctor3("3", "ahmed", "Riyadh");
-    Doctor doctor4("4", "ahmed", "Riyadh");
-    Doctor doctor5("5", "khalid", "Riyadh");
+    // FileManager::initialize();
+    int choice;
+    do
+    {
+        cout << "\nHospital Management System\n";
+        cout << "1. Add Doctor\n";
+        cout << "2. Delete Doctor\n";
+        cout << "3. Update Doctor\n";
+        cout << "4. Display All Doctors\n";
+        cout << "5. Add Appointment\n";
+        cout << "6. Delete Appointment\n";
+        cout << "7. Update Appointment\n";
+        cout << "8. Display All Appointments\n";
+        cout << "9. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
 
-    Appointment appointment("1", "1", "2023-01-01");
-    Appointment appointment2("2", "1", "2023-01-01");
-    Appointment appointment3("3", "2", "2023-01-01");
-    Appointment appointment4("4", "2", "2023-01-01");
-    Appointment appointment5("5", "3", "2023-01-01");
-    Appointment appointment6("6", "3", "2023-01-01");
-    Appointment appointment7("7", "4", "2023-01-01");
-    Appointment appointment8("8", "4", "2023-01-01");
-    Appointment appointment9("9", "5", "2023-01-01");
-    Appointment appointment10("10", "5", "2023-01-01");
+        switch (choice)
+        {
+        case 1:
+        {
+            // Add Doctor
+            string id, name, address;
+            cout << "Enter Doctor ID: ";
+            cin >> id;
+            cout << "Enter Doctor Name: ";
+            cin.ignore(); // To ignore the leftover newline character from the previous input
+            getline(cin, name);
+            cout << "Enter Doctor Address: ";
+            getline(cin, address);
 
-    //    FileManager::addDoctors(doctor);
-    //    FileManager::addDoctors(doctor2);
-    //    FileManager::addDoctors(doctor3);
-    //    FileManager::addDoctors(doctor4);
-    //    FileManager::addDoctors(doctor5);
-    //
-    //    FileManager::addAppointments(appointment);
-    //    FileManager::addAppointments(appointment2);
-    //    FileManager::addAppointments(appointment3);
-    //    FileManager::addAppointments(appointment4);
-    //    FileManager::addAppointments(appointment5);
-    //    FileManager::addAppointments(appointment6);
-    //    FileManager::addAppointments(appointment7);
-    //    FileManager::addAppointments(appointment8);
-    //    FileManager::addAppointments(appointment9);
-    //    FileManager::addAppointments(appointment10);
-    //    FileManager::updateDoctor("4" , "khalid" , "Riyadh");
-    //    FileManager::deleteAppointment("1");
-    //    FileManager::deleteDoctor("1");
-    //    FileManager::addDoctors(doctor);
-    //    FileManager::deleteDoctor("2");
-    FileManager::displayDoctors();
-    cout << "\n\n";
-    FileManager::displayAppointments();
+            Doctor newDoctor(id, name, address);
+            FileManager::addDoctors(newDoctor);
+            break;
+        }
+
+        case 2:
+        {
+            // Delete Doctor
+            string id;
+            cout << "Enter Doctor ID to delete: ";
+            cin >> id;
+            FileManager::deleteDoctor(id);
+            break;
+        }
+
+        case 3:
+        {
+            // Update Doctor
+            string id, newName, newAddress;
+            cout << "Enter Doctor ID to update: ";
+            cin >> id;
+            cout << "Enter new Name (leave empty if no change): ";
+            cin.ignore(); // To ignore the leftover newline character
+            getline(cin, newName);
+            cout << "Enter new Address (leave empty if no change): ";
+            getline(cin, newAddress);
+
+            FileManager::updateDoctor(id, newName, newAddress);
+            break;
+        }
+
+        case 4:
+        {
+            // Display All Doctors
+            FileManager::displayDoctors();
+            break;
+        }
+
+        case 5:
+        {
+            // Add Appointment
+            string id, doctorID, date;
+            cout << "Enter Appointment ID: ";
+            cin >> id;
+            cout << "Enter Doctor ID for the appointment: ";
+            cin >> doctorID;
+            cout << "Enter Appointment Date: ";
+            cin.ignore();
+            getline(cin, date);
+
+            Appointment newAppointment(id, doctorID, date);
+            FileManager::addAppointments(newAppointment);
+            break;
+        }
+
+        case 6:
+        {
+            // Delete Appointment
+            string id;
+            cout << "Enter Appointment ID to delete: ";
+            cin >> id;
+            FileManager::deleteAppointment(id);
+            break;
+        }
+
+        case 7:
+        {
+            // Update Appointment
+            string id, newDoctorID, newDate;
+            cout << "Enter Appointment ID to update: ";
+            cin >> id;
+            cout << "Enter new Doctor ID (leave empty if no change): ";
+            cin.ignore(); // To ignore the leftover newline character
+            getline(cin, newDoctorID);
+            cout << "Enter new Date (leave empty if no change): ";
+            getline(cin, newDate);
+
+            FileManager::updateAppointment(id, newDoctorID, newDate);
+            break;
+        }
+
+        case 8:
+        {
+            // Display All Appointments
+            FileManager::displayAppointments();
+            break;
+        }
+
+        case 9:
+            // Exit
+            cout << "Exiting system. Goodbye!\n";
+            break;
+
+        default:
+            cout << "Invalid choice. Please try again.\n";
+            break;
+        }
+    } while (choice != 9);
+
+    return 0;
 }

@@ -14,9 +14,10 @@ map<string, list<string>> FileManager::appointmentsSecondaryIndexForDoctorID;
 
 void FileManager::addDoctors(Doctor doctor)
 {
-    fstream file("doctors.txt", ios ::in | ios::out);
+    string name = "doctors.txt";
+    fstream file(name, ios ::in | ios::out);
     if (!file.is_open())
-        throw runtime_error("Failed to open file");
+        throw runtime_error("Failed to open file " + name);
     int normalizedID = stoi(doctor.ID);
     if (doctorPrimaryIndex.find(normalizedID) != doctorPrimaryIndex.end())
         throw runtime_error("Doctor already exists");
@@ -44,9 +45,10 @@ void FileManager::addDoctors(Doctor doctor)
 }
 void FileManager::addAppointments(Appointment appointment)
 {
-    fstream file("appointments.txt", ios::app | ios ::in);
+    string name = "appointments.txt";
+    fstream file(name, ios::app | ios ::in);
     if (!file.is_open())
-        throw runtime_error("Failed to open file");
+        throw runtime_error("Failed to open file " + name);
     int normalizedID = stoi(appointment.ID);
     if (appointmentsPrimaryIndex.find(normalizedID) != appointmentsPrimaryIndex.end())
         throw runtime_error("Appointment already exists");
@@ -81,9 +83,10 @@ void FileManager::deleteDoctor(string id)
         return;
     }
 
-    fstream file("doctors.txt", ios::in | ios::out);
+    string name = "doctors.txt";
+    fstream file(name, ios::in | ios::out);
     if (!file.is_open())
-        throw runtime_error("Failed to open file");
+        throw runtime_error("Failed to open file " + name);
 
     file.seekp(it->second);
     file << "*";
@@ -110,9 +113,10 @@ void FileManager::deleteAppointment(string id)
         return;
     }
 
+    string name = "appointments.txt";
     fstream file("appointments.txt", ios::in | ios::out);
     if (!file.is_open())
-        throw runtime_error("Failed to open file");
+        throw runtime_error("Failed to open file " + name);
 
     file.seekp(it->second);
     file << "*";
@@ -137,7 +141,8 @@ void FileManager::updateDoctor(string doctorID, string newName = "", string addr
         cout << "Warning: doctor with ID " << doctorID << " does not exist." << endl;
         return;
     }
-    fstream file("doctors.txt", ios::in | ios::out | ios::binary);
+    string name = "doctors.txt";
+    fstream file(name, ios::in | ios::out | ios::binary);
     if (!file.is_open())
     {
         throw runtime_error("Unable to open doctor file for updating.");
@@ -172,7 +177,8 @@ void FileManager::updateAppointment(string appointmentID, string newDoctorID = "
         cout << "Warning: appointment with ID " << appointmentID << " does not exist." << endl;
         return;
     }
-    fstream file("appointments.txt", ios::in | ios::out | ios::binary);
+    string name = "appointments.txt";
+    fstream file(name, ios::in | ios::out | ios::binary);
     if (!file.is_open())
     {
         throw runtime_error("Unable to open appointment file for updating.");
@@ -218,9 +224,10 @@ void FileManager::displayAppointments()
 }
 void FileManager::loadDoctorsFromFile()
 {
-    ifstream file("doctors.txt");
+    string name = "doctors.txt";
+    ifstream file(name);
     if (!file.is_open())
-        throw runtime_error("Failed to open file");
+        throw runtime_error("Failed to open file " + name + " to load data.");
     string line;
     getline(file, line, '\n');
     while (getline(file, line, '\n'))
@@ -232,9 +239,10 @@ void FileManager::loadDoctorsFromFile()
 }
 void FileManager::loadAppointmentsFromFile()
 {
-    ifstream file("appointments.txt");
+    string name = "appointments.txt";
+    ifstream file(name);
     if (!file.is_open())
-        throw runtime_error("Failed to open file");
+        throw runtime_error("Failed to open file " + name + " to load data.");
     string line;
     getline(file, line, '\n');
     while (getline(file, line, '\n'))
@@ -246,9 +254,10 @@ void FileManager::loadAppointmentsFromFile()
 }
 void FileManager::loadDoctorPrimaryIndex()
 {
-    ifstream file("doctorsPrimaryIndex.txt");
+    string name = "doctorsPrimaryIndex.txt";
+    ifstream file(name);
     if (!file.is_open())
-        throw runtime_error("Failed to open file");
+        throw runtime_error("Failed to open file " + name + " to load data.");
     string line;
     while (getline(file, line))
     {
@@ -260,9 +269,10 @@ void FileManager::loadDoctorPrimaryIndex()
 }
 void FileManager::loadAppointmentsPrimaryIndex()
 {
-    ifstream file("appointmentsPrimaryIndex.txt");
+    string name = "appointmentsPrimaryIndex.txt";
+    ifstream file(name);
     if (!file.is_open())
-        throw runtime_error("Failed to open file");
+        throw runtime_error("Failed to open file " + name + " to load data.");
     string line;
     while (getline(file, line))
     {
@@ -274,9 +284,10 @@ void FileManager::loadAppointmentsPrimaryIndex()
 }
 void FileManager::loadDoctorsNameSecondaryIndex()
 {
-    ifstream file("doctorsNameSecondaryIndex.txt");
+    string name = "doctorsNameSecondaryIndex.txt";
+    ifstream file(name);
     if (!file.is_open())
-        throw runtime_error("Failed to open file");
+        throw runtime_error("Failed to open file " + name + " to load data.");
     string line;
     while (getline(file, line))
     {
@@ -290,9 +301,10 @@ void FileManager::loadDoctorsNameSecondaryIndex()
 }
 void FileManager::loadAppointmentDoctorIDSecondaryIndex()
 {
-    ifstream file("appointmentsDocotorIDSecondaryIndex.txt");
+    string name = "appointmentsDocotorIDSecondaryIndex.txt";
+    ifstream file(name);
     if (!file.is_open())
-        throw runtime_error("Failed to open file");
+        throw runtime_error("Failed to open file " + name + " to load data.");
     string line;
     while (getline(file, line))
     {
@@ -306,9 +318,10 @@ void FileManager::loadAppointmentDoctorIDSecondaryIndex()
 void FileManager::loadAvailableListDoctor()
 {
     availableListDoctor = {};
-    ifstream file("doctorsAvailableList.txt");
+    string name = "doctorsAvailableList.txt";
+    ifstream file(name);
     if (!file.is_open())
-        throw runtime_error("Failed to open file");
+        throw runtime_error("Failed to open DocAvailList");
     string line;
     getline(file, line, '\n');
     if (line[0] != ' ')
@@ -326,9 +339,10 @@ void FileManager::loadAvailableListDoctor()
 void FileManager::loadAvailableListAppointment()
 {
     availableListAppointment = {};
-    ifstream file("AppointmentAvailableList.txt");
+    string name = "AppointmentAvailableList.txt";
+    ifstream file(name);
     if (!file.is_open())
-        throw runtime_error("Failed to open file");
+        throw runtime_error("Failed to open AppointAvailList");
     string line;
     getline(file, line, '\n');
     if (line[0] != ' ')
@@ -346,9 +360,10 @@ void FileManager::loadAvailableListAppointment()
 void FileManager::createDoctorPrimaryIndex()
 {
     doctorPrimaryIndex = {};
-    fstream file("doctors.txt", ios::in | ios::out);
+    string name = "doctors.txt";
+    fstream file(name, ios::in | ios::out);
     if (!file.is_open())
-        throw runtime_error("Failed to open file");
+        throw runtime_error("Failed to create primary index for doctors");
     string line;
     int location = 0;
     while (getline(file, line, '\n'))
@@ -362,9 +377,10 @@ void FileManager::createDoctorPrimaryIndex()
 }
 void FileManager::createAppointmentsPrimaryIndex()
 {
-    fstream file("appointments.txt", ios::in | ios::out);
+    string name = "appointments.txt";
+    fstream file(name, ios::in | ios::out);
     if (!file.is_open())
-        throw runtime_error("Failed to open file");
+        throw runtime_error("Failed to create primary index for appointments");
     string line;
     int i = 1;
     int location = 0;
@@ -379,9 +395,10 @@ void FileManager::createAppointmentsPrimaryIndex()
 }
 void FileManager::saveDoctorsNameSecondaryIndexFile()
 {
-    ofstream file("doctorsNameSecondaryIndex.txt");
+    string name = "doctorsNameSecondaryIndex.txt";
+    ofstream file(name);
     if (!file.is_open())
-        throw runtime_error("Failed to open index file");
+        throw runtime_error("Failed to open doc secondary name index");
 
     for (auto &indexRecord : doctorSecondaryIndexForName)
     {
@@ -394,9 +411,10 @@ void FileManager::saveDoctorsNameSecondaryIndexFile()
 }
 void FileManager::saveAppointmentDoctorIDSecondaryIndexFile()
 {
-    ofstream file("appointmentsDocotorIDSecondaryIndex.txt");
+    string name = "appointmentsDocotorIDSecondaryIndex.txt";
+    ofstream file(name);
     if (!file.is_open())
-        throw runtime_error("Failed to open index file");
+        throw runtime_error("Failed to open appointment secondary docID index");
     for (auto &indexRecord : appointmentsSecondaryIndexForDoctorID)
     {
         if (indexRecord.second.empty())
@@ -408,9 +426,10 @@ void FileManager::saveAppointmentDoctorIDSecondaryIndexFile()
 }
 void FileManager::saveDoctorPrimaryIndexFile()
 {
-    ofstream file("doctorsPrimaryIndex.txt");
+    string name = "doctorsPrimaryIndex.txt";
+    ofstream file(name);
     if (!file.is_open())
-        throw runtime_error("Failed to open index file");
+        throw runtime_error("Failed to open doc prim index");
     for (auto &indexRecord : doctorPrimaryIndex)
     {
         string size = to_string(indexRecord.first) + '|' + to_string(indexRecord.second);
@@ -420,9 +439,10 @@ void FileManager::saveDoctorPrimaryIndexFile()
 }
 void FileManager::saveAppointmentPrimaryIndexFile()
 {
-    ofstream file("appointmentsPrimaryIndex.txt");
+    string name = "appointmentsPrimaryIndex.txt";
+    ofstream file(name);
     if (!file.is_open())
-        throw runtime_error("Failed to open index file");
+        throw runtime_error("Failed to open appoint prim index");
     for (auto &indexRecord : appointmentsPrimaryIndex)
     {
         string size = to_string(indexRecord.first) + '|' + to_string(indexRecord.second);
@@ -432,9 +452,10 @@ void FileManager::saveAppointmentPrimaryIndexFile()
 }
 void FileManager::saveAvailableListDoctor()
 {
-    ofstream file("doctorsAvailableList.txt", ios::in | ios::out);
+    string name = "doctorsAvailableList.txt";
+    ofstream file(name, ios::in | ios::out);
     if (!file.is_open())
-        throw runtime_error("Failed to open file");
+        throw runtime_error("Failed to open doc AvailList");
 
     file.seekp(0, ios::beg);
     for (int location : availableListDoctor)
@@ -448,7 +469,7 @@ void FileManager::saveAvailableListAppointment()
 {
     ofstream file("AppointmentAvailableList.txt", ios::in | ios::out);
     if (!file.is_open())
-        throw runtime_error("Failed to open file");
+        throw runtime_error("Failed to open appoint AvailList");
 
     file.seekp(0, ios::beg);
     for (auto location : availableListAppointment)
