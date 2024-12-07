@@ -1,7 +1,7 @@
 
 #ifndef FILE_DOCTORSECONDARYINDEXFORNAME_H
 #define FILE_DOCTORSECONDARYINDEXFORNAME_H
-#include "bits/stdc++.h"
+#include <bits/stdc++.h>
 using namespace std;
 class DoctorSecondaryIndexForName
 {

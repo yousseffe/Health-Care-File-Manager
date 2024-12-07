@@ -1,4 +1,3 @@
-#include <iostream>
 #include "FileManager.h"
 int main()
 {
